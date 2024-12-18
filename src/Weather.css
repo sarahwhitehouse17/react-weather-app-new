@@ -5,7 +5,7 @@
   font-family: Arial, Helvetica, sans-serif;
   padding: 16px;
   margin: 30px auto;
-  max-width:750px;
+  max-width: 750px;
 }
 
 .Weather h1 {
@@ -16,7 +16,7 @@
 }
 
 .Weather form {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .Weather p {
@@ -38,10 +38,41 @@
 }
 
 .temperature {
-  margin-right: 15px;
+  font-weight: 400;
+  color: black;
+  font-size: 48px;
+  margin-right: -10px;
 }
 
-.Weather .weather-heading  {
-    font-size: 22px;
+.unit {
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  margin-left: 7px;
+  margin-top: 9px;
+  margin-right: 10px;
 }
 
+
+.Weather .weather-data-spacing {
+  display: flex;
+  position: relative;
+}
+
+.Weather .weather-heading li {
+  display: flex;
+  justify-content: end;
+  color: red;
+}
+
+.Weather .weather-heading {
+  font-size: 22px;
+  color: black;
+}
+
+img {
+  line-height: 12px;
+  max-width: 50%;
+  max-height: 50%;
+  position: relative;
+}
