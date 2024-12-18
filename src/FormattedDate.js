@@ -1,5 +1,3 @@
-import React from "react";
-
 export function FormattedDate(props) {
   console.log(props.date);
   let days = [
