@@ -1,8 +1,13 @@
 import React from "react";
 import { FormattedDate } from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
+import WeatherTemperature from "./WeatherTemperature";
 
 export default function WeatherInfo(props) {
+  if (!props.data || !props.data.temperature) {
+    return <div>Loading...</div>; // Show loading state if data is not available
+  }
+  console.log(props.data);
   return (
     <div className="WeatherInfo">
       <h1>Results for {props.data.city}</h1>
@@ -11,10 +16,8 @@ export default function WeatherInfo(props) {
           <div>
             <WeatherIcon code={props.data.icon} />
           </div>
-          <span className="temperature">
-            {Math.round(props.data.temperature)}{" "}
-          </span>
-          <span className="unit">°C | °F</span>
+          <WeatherTemperature celsius={props.data.temperature.current} />
+
           <ul>
             <li>Humidity: {props.data.humidity}%</li>
             <li>Wind: {Math.round(props.data.wind)}km/h</li>
