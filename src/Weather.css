@@ -77,3 +77,7 @@
 .display-temperature {
   display: flex;
 }
+
+a {
+  color: rgb(13, 202, 240);
+}
