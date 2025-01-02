@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./Weather.css";
-import { FormattedDate } from "./FormattedDate";
+import WeatherInfo from "./WeatherInfo";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default function Weather(props) {
   const [weather, setWeather] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
 
   function handleApiCall(response) {
     console.log(response.data);
@@ -20,10 +21,18 @@ export default function Weather(props) {
     });
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
+  function handleChangeCity(event) {
+    setCity(event.target.value);
+  }
+
   if (weather.ready) {
     return (
       <div className="Weather">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-9">
               <input
@@ -31,6 +40,7 @@ export default function Weather(props) {
                 placeholder="search for a city"
                 className="form-control"
                 autoFocus="on"
+                onChange={handleChangeCity}
               />
             </div>
             <div className="col-3">
@@ -42,31 +52,7 @@ export default function Weather(props) {
             </div>
           </div>
         </form>
-        <h1>Results for {props.defaultCity}</h1>
-        <div className="row weather-data-spacing">
-          <div className="col-6 weather-left-col">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/rain.png"
-              alt="weather-icon"
-            />
-            <span className="temperature">
-              {Math.round(weather.temperature)}{" "}
-            </span>
-            <span className="unit">°C | °F</span>
-            <ul>
-              <li>Humidity: {weather.humidity}%</li>
-              <li>Wind: {Math.round(weather.wind)}km/h</li>
-            </ul>
-          </div>
-          <div className="col-6 d-flex justify-content-end">
-            <br />
-            <ul>
-              <li className="weather-heading">Weather</li>
-              <FormattedDate date={weather.date} />
-              <li className="text-capitalize">{weather.description}</li>
-            </ul>
-          </div>
-        </div>
+        <WeatherInfo data={weather} />
       </div>
     );
   } else {
