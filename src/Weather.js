@@ -8,8 +8,8 @@ export default function Weather(props) {
   const [weather, setWeather] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
-  function handleApiCall(response) {
-    console.log(response.data);
+  function handleResponse(response) {
+    console.log(response.data.time);
     setWeather({
       ready: true,
       temperature: response.data.temperature.current,
@@ -18,15 +18,23 @@ export default function Weather(props) {
       date: new Date(response.data.time * 1000),
       description: response.data.condition.description,
       humidity: response.data.temperature.humidity,
+      icon: response.data.condition.icon_url,
     });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    search();
   }
 
   function handleChangeCity(event) {
     setCity(event.target.value);
+  }
+
+  function search() {
+    const apiKey = "3deb07c475cdt015b4f399a253e4o0b8";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
   }
 
   if (weather.ready) {
@@ -56,10 +64,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apiKey = "3deb07c475cdt015b4f399a253e4o0b8";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleApiCall);
-
+    search();
     return "Loading..";
   }
 }
