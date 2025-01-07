@@ -7,7 +7,6 @@ export default function WeatherInfo(props) {
   if (!props.data || !props.data.temperature) {
     return <div>Loading...</div>; // Show loading state if data is not available
   }
-  console.log(props.data);
   return (
     <div className="WeatherInfo">
       <h1>Results for {props.data.city}</h1>
