@@ -14,24 +14,19 @@ export default function WeatherForecast(props) {
   }
 
   if (loaded) {
+    console.log(forecast);
     return (
       <div className="WeatherForecast">
         <div className="row">
-          <div className="col">
-            <WeatherForecastDay data={forecast.daily[0]} />
-          </div>
-          <div className="col">
-            <WeatherForecastDay data={forecast.daily[1]} />
-          </div>
-          <div className="col">
-            <WeatherForecastDay data={forecast.daily[2]} />
-          </div>
-          <div className="col">
-            <WeatherForecastDay data={forecast.daily[3]} />
-          </div>
-          <div className="col">
-            <WeatherForecastDay data={forecast.daily[4]} />
-          </div>
+          {forecast.daily.map(function (dailyForecast, index) {
+            if (index < 5) {
+              return (
+                <div className="col" key={index}>
+                  <WeatherForecastDay data={dailyForecast} />
+                </div>
+              );
+            }
+          })}
         </div>
       </div>
     );
