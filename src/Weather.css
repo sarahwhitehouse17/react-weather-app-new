@@ -79,5 +79,17 @@
 }
 
 a {
-  color: rgb(13, 202, 240);
+  color: #8594e4;
 }
+
+.search-button {
+  background-color: #8594e4;
+  color: white;
+}
+.search-button:hover {
+  background-color: white;
+  color: #8594e4;
+  border: 1px solid #8594e4;
+}
+
+
